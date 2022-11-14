@@ -28,11 +28,9 @@ public class DepartamentoControllers {
 	}
 	
 	@GetMapping("/departamentos/{codigo}")
-	public Departamento buscarDepartamento(@PathVariable(name="codigo") int codigo) {
+	public Departamento buscarDepartamento(@PathVariable(name="codigo") Long codigo) {
 		return departamentoServices.buscarDepartamento(codigo);
 	}
-	
-	//Falta método para traer todos los empleados de cada departamento
 	
 	@PostMapping("/departamentos")
 	public Departamento agregarDepartamento(@RequestBody Departamento departamento) {
@@ -41,7 +39,7 @@ public class DepartamentoControllers {
 	}
 	
 	@PutMapping("/departamentos/{codigo}")
-	public Departamento actualizarDepartamento(@PathVariable(name="codigo") int codigo, @RequestBody Departamento departamento) {
+	public Departamento actualizarDepartamento(@PathVariable(name="codigo") Long codigo, @RequestBody Departamento departamento) {
 		Departamento departamentoSeleccionado = departamentoServices.buscarDepartamento(codigo);
 		
 		departamentoSeleccionado.setNombre(departamento.getNombre());
@@ -51,7 +49,7 @@ public class DepartamentoControllers {
 	}
 	
 	@DeleteMapping("/departamentos/{codigo}")
-	public void eliminarDepartamento(@PathVariable(name="codigo")int codigo) {
+	public void eliminarDepartamento(@PathVariable(name="codigo")Long codigo) {
 		departamentoServices.eliminarDepartamento(codigo);
 	}
 }

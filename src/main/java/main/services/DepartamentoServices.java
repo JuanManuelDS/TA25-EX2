@@ -21,7 +21,7 @@ public class DepartamentoServices implements IDepartamentoServices{
 	}
 
 	@Override
-	public Departamento buscarDepartamento(int codigo) {
+	public Departamento buscarDepartamento(Long codigo) {
 		
 		return iDepartamentoDAO.findById(codigo).get();
 	}
@@ -39,7 +39,7 @@ public class DepartamentoServices implements IDepartamentoServices{
 	}
 
 	@Override
-	public void eliminarDepartamento(int codigo) {
+	public void eliminarDepartamento(Long codigo) {
 		
 		iDepartamentoDAO.deleteById(codigo);
 	}

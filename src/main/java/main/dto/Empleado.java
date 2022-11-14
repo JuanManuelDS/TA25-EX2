@@ -1,11 +1,15 @@
 package main.dto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table (name="empleados")
@@ -29,7 +33,6 @@ public class Empleado {
 	}
 
 	public Empleado(String dni, String nombre, String apellidos, Departamento departamento) {
-		super();
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -73,7 +76,5 @@ public class Empleado {
 		return "Empleado [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", departamento="
 				+ departamento + "]";
 	}
-	
-	
 	
 }

@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="departamentos")
@@ -31,12 +34,13 @@ public class Departamento {
 	}
 	
 	public Departamento(Long codigo, String nombre, int presupuesto, List<Empleado> empleados) {
-		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
 		this.empleados = empleados;
 	}
+
+	
 
 	public Long getCodigo() {
 		return codigo;
@@ -60,6 +64,16 @@ public class Departamento {
 
 	public void setPresupuesto(int presupuesto) {
 		this.presupuesto = presupuesto;
+	}
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Empleado")
+	public List<Empleado> getEmpleados() {
+		return empleados;
+	}
+
+	public void setEmpleados(List<Empleado> empleados) {
+		this.empleados = empleados;
 	}
 
 	@Override

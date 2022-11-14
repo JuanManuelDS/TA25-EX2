@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import main.dto.Departamento;
 import main.dto.Empleado;
+import main.services.DepartamentoServices;
 import main.services.EmpleadoService;
 
 @RestController
@@ -22,29 +24,34 @@ public class EmpleadoControllers {
 	
 	@Autowired
 	EmpleadoService empleadoService;
+	DepartamentoServices departamentoServices;
 	
 	@GetMapping("/empleados")
 	public List<Empleado> listarEmpleados(){
+		
 		return empleadoService.listarEmpleados();
 	}
 	
 	@GetMapping("/empleados/{dni}")
 	public Empleado buscarEmpleado(@PathVariable(name="dni") String dni) {
+		
 		return empleadoService.buscarEmpleado(dni);
 	}
 	
 	@PostMapping("/empleados")
 	public Empleado guardarEmpleado(@RequestBody Empleado empleado) {
+		
 		return empleadoService.guardarEmpleado(empleado);
 	}
 	
 	@PutMapping("/empleados/{dni}")
 	public Empleado actualizarEmpleado(@PathVariable(name="dni") String dni, @RequestBody Empleado empleado) {
+		
 		Empleado empleadoSeleccionado = empleadoService.buscarEmpleado(dni);
 		empleadoSeleccionado.setNombre(empleado.getNombre());
 		empleadoSeleccionado.setApellidos(empleado.getApellidos());
 		empleadoSeleccionado.setDepartamento(empleado.getDepartamento());
-		//empleadoSeleccionado.setDni(empleado.getDni());
+		
 		return empleadoService.actualizarEmpleado(empleadoSeleccionado);
 	}
 	

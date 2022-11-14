@@ -8,11 +8,11 @@ public interface IDepartamentoServices {
 	
 	public List<Departamento> listarDepartamentos();
 	
-	public Departamento buscarDepartamento(int codigo);
+	public Departamento buscarDepartamento(Long codigo);
 	
 	public Departamento guardarDepartamento(Departamento departamento);
 	
 	public Departamento actualizarDepartamento(Departamento departamento);
 	
-	public void eliminarDepartamento(int codigo);
+	public void eliminarDepartamento(Long codigo);
 }
